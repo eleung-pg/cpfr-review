@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+           xsi:type="TaskPaneApp">
+  <Id>75891adc-ad82-4ee5-bb53-3f78f050c31c</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>SCP</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="CPFR Weekly Review"/>
+  <Description DefaultValue="Weekly review of a prepped CPFR tab: yellow PR Override comments, WoW demand swings and stock-out risk at sell-through trend."/>
+  <IconUrl DefaultValue="https://eleung-pg.github.io/cpfr-review/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://eleung-pg.github.io/cpfr-review/assets/icon-80.png"/>
+  <SupportUrl DefaultValue="https://eleung-pg.github.io/cpfr-review/taskpane.html"/>
+  <AppDomains>
+    <AppDomain>https://eleung-pg.github.io</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Workbook"/>
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://eleung-pg.github.io/cpfr-review/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="Taskpane.Url"/>
+          </GetStarted>
+          <FunctionFile resid="Taskpane.Url"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="CpfrGroup">
+                <Label resid="Group.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16"/>
+                  <bt:Image size="32" resid="Icon.32"/>
+                  <bt:Image size="80" resid="Icon.80"/>
+                </Icon>
+                <Control xsi:type="Button" id="CpfrTaskpaneButton">
+                  <Label resid="Button.Label"/>
+                  <Supertip>
+                    <Title resid="Button.Label"/>
+                    <Description resid="Button.Tip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16"/>
+                    <bt:Image size="32" resid="Icon.32"/>
+                    <bt:Image size="80" resid="Icon.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>CpfrTaskpane</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16" DefaultValue="https://eleung-pg.github.io/cpfr-review/assets/icon-16.png"/>
+        <bt:Image id="Icon.32" DefaultValue="https://eleung-pg.github.io/cpfr-review/assets/icon-32.png"/>
+        <bt:Image id="Icon.80" DefaultValue="https://eleung-pg.github.io/cpfr-review/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://eleung-pg.github.io/cpfr-review/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="CPFR Weekly Review"/>
+        <bt:String id="Group.Label" DefaultValue="CPFR"/>
+        <bt:String id="Button.Label" DefaultValue="Weekly Review"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Open the CPFR Weekly Review pane from the Home tab."/>
+        <bt:String id="Button.Tip" DefaultValue="Review a prepped CPFR tab: comments, demand swings, stock-out risk."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
