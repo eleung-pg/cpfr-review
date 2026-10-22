@@ -10,6 +10,7 @@
   const pct = v => (typeof v === 'number' ? (v * 100).toFixed(1) + '%' : '');
   const REVIEW_SUFFIXES = [' Comments', ' Demand Swings', ' Stock-Out Risk'];
   const ARROW = '→', PM = '±';
+  const AUTO = 'Office.AutoShowTaskpaneWithDocument';
 
   function setStatus(msg, isErr) { const s = $('status'); s.textContent = msg; s.className = isErr ? 'err' : ''; }
   const tabName = (src, suffix) => src.slice(0, 31 - suffix.length) + suffix;
@@ -25,7 +26,6 @@
   });
 
   // Saved in the workbook: Excel reopens this pane with the file (needs the Office.AutoShowTaskpaneWithDocument TaskpaneId).
-  const AUTO = 'Office.AutoShowTaskpaneWithDocument';
   function initAutoOpen() {
     const settings = Office.context.document.settings, box = $('autoOpen');
     box.checked = settings.get(AUTO) === true;
