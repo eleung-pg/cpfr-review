@@ -17,11 +17,25 @@
   Office.onReady(info => {
     if (info.host !== Office.HostType.Excel) { setStatus('This add-in only runs in Excel.', true); return; }
     loadSheets();
+    initAutoOpen();
     $('runAll').onclick = () => run([1, 2, 3]);
     $('run1').onclick = () => run([1]);
     $('run2').onclick = () => run([2]);
     $('run3').onclick = () => run([3]);
   });
+
+  // Saved in the workbook: Excel reopens this pane with the file (needs the Office.AutoShowTaskpaneWithDocument TaskpaneId).
+  const AUTO = 'Office.AutoShowTaskpaneWithDocument';
+  function initAutoOpen() {
+    const settings = Office.context.document.settings, box = $('autoOpen');
+    box.checked = settings.get(AUTO) === true;
+    box.onchange = () => {
+      settings.set(AUTO, box.checked);
+      settings.saveAsync(r => setStatus(r.status === Office.AsyncResultStatus.Succeeded
+        ? (box.checked ? 'This pane will open with this workbook (save the workbook to keep it).' : 'Auto-open turned off (save the workbook).')
+        : 'Could not save the auto-open setting: ' + r.error.message, r.status !== Office.AsyncResultStatus.Succeeded));
+    };
+  }
 
   async function loadSheets() {
     try {
